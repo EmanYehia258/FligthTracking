@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>holidaymaker a Travel Category Bootstrap responsive Website Template | Home :: w3layouts</title>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.css" rel="stylesheet">
+    <link href="~/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" /><!-- //pop-ups-->
+    <!-- team-->
+    <link href="~/css/ihover.css" rel="stylesheet" type="text/css" media="all" /><!-- //team -->
+    <link href="~/css/swipebox.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Merienda:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- //fonts -->
+  
+</head>
+<body>
+    <!-- banner -->
+    <div class="banner-figures">
+        <div class="banner">
+            <div class="container banner-drop">
+                <div class="header">
+                    <div class="header-left logo">
+                        <h1><a href="index.html">holidaymaker</a></h1>
+                    </div>
+                    <div class="header-right">
+                        <nav>
+                            <ul>
+                                <li class="active">
+                                    @Html.ActionLink("Home", "Index", "Home")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Track Passanger", "PassangerSearch", "Passanger")
+                                </li>
+
+                                @{
+                                    if (User.Identity.IsAuthenticated && User.IsInRole("LuggageManager"))
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Luggage Stage", "StageDetails", "Stage", new { id = 2 }, "")
+                                        </li>
+
+                                    }
+                                    else if (User.Identity.IsAuthenticated && User.IsInRole("OnPlaneManager"))
+                                    {
+                                        <li>
+                                            @Html.ActionLink("On Plane Stage", "StageDetails", "Stage", new { id = 1 }, "")
+                                        </li>
+
+
+                                    }
+                                    else if (User.Identity.IsAuthenticated && User.IsInRole("InspectingManager"))
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Inspecting Stage", "StageDetails", "Stage", new { id = 3 }, "")
+                                        </li>
+
+                                    }
+                                    else if (User.Identity.IsAuthenticated && User.IsInRole("CustomManager"))
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Customs Stage", "StageDetails", "Stage", new { id = 4 }, "")
+                                        </li>
+
+                                    }
+                                    else if (User.Identity.IsAuthenticated && User.IsInRole("PapersManager"))
+                                    {
+
+                                        <li>
+                                            @Html.ActionLink("Papers Stage", "StageDetails", "Stage", new { id = 5 }, "")
+                                        </li>
+
+                                    }
+                                    else if (User.Identity.IsAuthenticated && User.IsInRole("SuperAdmin"))
+                                    {
+
+                                        <li>
+                                            @Html.ActionLink("Control", "StageDetails", "Stage", new { id = 1 }, "")
+                                        </li>
+
+                                    }
+                                }
+                                
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                    <li >
+                                        <a>@User.Identity.Name</a>
+                                    </li>
+
+                                    <li>
+
+                                        @using (Html.BeginForm("LogOff", "Account"))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <input type="submit" value="Log Out" class="btn btn-danger" />
+                                        }
+                                    
+
+                                    </li>
+                                }
+
+                                    @if (!User.Identity.IsAuthenticated)
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Log In", "Login", "Account")
+                                        </li>
+                                    }
+
+
+                                </ul>
+                            
+                        </nav>
+                        <div class="menu-icon animated wow zoomIn" data-wow-duration="1000ms" data-wow-delay="800ms"><span></span></div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="banner-text-agileits">
+                    <h3>Enjoy Your Dream Vacation</h3>
+                    <p>Find Travel Perfection With the Professionalism of Experts.</p>
+                </div>
+                @*<div class="subscribe">
+                        <form action="#" method="post">
+                            <input type="search" class="Search" name="Search" required="">
+                            <input type="submit" value="">
+                        </form>
+                    </div>*@
+                <div class="social-icons animated wow bounceInDown" data-wow-duration="1000ms" data-wow-delay="800ms">
+                    <ul class="top-links">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //banner -->
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer></footer>
+    </div>
+
+
+
+    <!-- //footer -->
+
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery-2.1.4.min.js"></script>
+    <script>
+        (function ($) {
+            $(".menu-icon").on("click", function () {
+                $(this).toggleClass("open");
+                $(".container").toggleClass("nav-open");
+                $("nav ul li").toggleClass("animate");
+            });
+
+        })(jQuery);
+    </script>
+    <!-- swipe box js -->
+    <script src="~/js/jquery.swipebox.min.js"></script>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(".swipebox").swipebox();
+        });
+    </script>
+    <!-- //swipe box js -->
+    <!-- jarallax-js -->
+    <script src="~/js/jarallax.js"></script>
+    <script src="~/js/SmoothScroll.min.js"></script>
+    <script type="text/javascript">
+        /* init Jarallax */
+        $('.jarallax').jarallax({
+            speed: 0.5,
+            imgWidth: 1366,
+            imgHeight: 768
+        })
+    </script>
+    <!-- //jarallax-js -->
+    <!--pop-up-box -->
+    <script src="~/js/jquery.magnific-popup.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+        });
+    </script>
+    <!-- //pop-up-box -->
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <!-- //here ends scrolling icon -->
+    <!-- start-smooth-scrolling -->
+    <script type="text/javascript" src="~/js/move-top.js"></script>
+    <script type="text/javascript" src="~/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+
+    <!-- start-smooth-scrolling -->
+    @*///////////////////////////*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+    
+</body>
+</html>

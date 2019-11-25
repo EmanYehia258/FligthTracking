@@ -1,0 +1,24 @@
+﻿@model FlightTracking.Models.Plane
+
+    <table class="table">
+        <tr>
+            <td>
+                @Html.ActionLink(Html.DisplayFor(modelItem => Model.AirLine).ToString(), "Details", new { id = Model.ID })
+            </td>
+
+
+            <td>
+
+                <div>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" }) |
+                    @*@Html.ActionLink("Add Passanger", "AddPassanger", "Passanger", new { id = Model.ID }, new { @class = "btn btn-success" })|*@
+
+                    @Html.ActionLink("Delete", "delete", "Plane", new { id = Model.ID }, new { @class = "btn btn-danger" })
+
+                </div>
+
+            </td>
+
+        </tr>
+
+    </table>

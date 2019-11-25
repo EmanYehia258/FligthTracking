@@ -1,0 +1,22 @@
+﻿@model FlightTracking.Models.Passanger
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Name)
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Nationality)
+            @Html.ValidationMessageFor(model => model.Nationality, "", new { @class = "text-danger" })
+        </td>
+        <td>
+            <div>
+                @Html.ActionLink("Edit", "EditPassanger", new { id = Model.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = Model.Id }) |
+                @Html.ActionLink("Delete", "DeletePassanger", new { id = Model.Id })
+            </div>
+        </td>
+        
+    </tr>
+
+

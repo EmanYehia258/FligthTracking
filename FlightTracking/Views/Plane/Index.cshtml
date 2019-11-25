@@ -1,0 +1,71 @@
+﻿@model IEnumerable<FlightTracking.Models.Plane>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutInternal.cshtml";
+    Html.EnableClientValidation(true);
+}
+
+<h2>Index</h2>
+
+
+<div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#addplane">
+        Add
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addplane" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">ADD PLANE</h4>
+                </div>
+                <div class="modal-body">
+                    
+                        @Html.Action("create","Plane" )
+                            
+               
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+
+                @Html.DisplayNameFor(model => model.AirLine)
+            </th>
+      
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tbody" >
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                   
+                    @Html.ActionLink(Html.DisplayFor(modelItem => item.AirLine).ToString(), "Details", new { id = item.ID })
+                    
+                </td>
+                <td>
+                    
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+
+                    @*@Html.ActionLink("Add Passanger", "AddPassanger", "Passanger", new { id = item.ID }, new { @class = "btn btn-success" })*@
+                    @Html.ActionLink("Delete", "delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                </td>
+           
+                
+            </tr>
+
+        }
+    </tbody>
+</table>
